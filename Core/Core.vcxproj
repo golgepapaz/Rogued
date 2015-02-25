@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bsp.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelGenerator.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>
   <ItemGroup>

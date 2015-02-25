@@ -1,4 +1,6 @@
 
+#pragma once
+
 struct BSPNode
 {
     BSPNode *parent;
