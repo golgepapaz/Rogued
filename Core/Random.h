@@ -1,10 +1,22 @@
 #pragma once
 
 #include <random>
-namespace Random
+class Randomizer
 {
-    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::default_random_engine gen(seed);
-    std::uniform_distribution<int>
+    static std::default_random_engine generator;
+public:
+    static int RandInt(int min, int max)
+    {
+        std::uniform_int_distribution<int> dist(min, max);
+        return dist(generator);
+    }
+    static float RandFloat(float min, float max)
+    {
+        std::uniform_real_distribution<float> dist(min, max)
+        return dist(generator);
+    }
 
-}
+};
+
+
+
