@@ -13,9 +13,9 @@ enum class TileTerrainType
 };
 struct Tile
 {
-    TileTerrainType type;
+    TileTerrainType mType;
     bool IsWall()
     {
-        return type >= TileTerrainType::ROCK_WALL && type <= TileTerrainType::WALL_END;
+        return mType >= TileTerrainType::ROCK_WALL && mType <= TileTerrainType::WALL_END;
     }
 };
