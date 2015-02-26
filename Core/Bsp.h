@@ -11,13 +11,25 @@ struct BSPNode
     int x, y, w, h;
 
 };
-class BSPTree
+class BSPTree : public BSPNode
 {
     BSPNode  *root;
 public:
-    BSPTree(int x, int y, int w, int h)
+    BSPTree(int x, int y, int w, int h) : BSPNode(x, y, w, h)
     {
-        root = new BSPNode(x, y, w, h);
+
+    }
+    void Divide(bool direction, int pos)
+    {
+        if (direction) //horizontal
+        {
+            int y1 = this->y;
+            int y2 = pos;
+            int h1 = pos - this->y;
+
+            left = new BSPTree(x,)
+        }
+
     }
 
 };
