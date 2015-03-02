@@ -6,8 +6,9 @@
 #include "Bsp.h"
 int _tmain(int argc, _TCHAR* argv[])
 {
-    auto fg = BSPTree(0, 0, 200, 200);
-    fg.DivideRecursively(2, 10, 10, 0.5);
-    int a = 0;
+    auto fg = BSPTree(0, 0, 100, 100);
+    fg.DivideRecursively(3, 10, 10, 0.5);
+    BSPPrintVisitor vis;
+    fg.TraverseBFS(vis);
 }
 

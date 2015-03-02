@@ -1,19 +1,31 @@
 
 #pragma once
+
 #include "Random.h"
 #include <algorithm>
+#include <iostream>
+#include <deque>
 
 class BSPTree
 {
     BSPTree *parent = nullptr;
     BSPTree *left = nullptr;
     BSPTree *right = nullptr;
+public:
     int x = 0, y = 0, w = 0, h = 0;
     int level = 0;
 public:
     BSPTree(int x, int y, int w, int h) : x(x), y(y), w(w), h(h)
     {
 
+    }
+    BSPTree* GetLeft() const
+    {
+        return left;
+    }
+    BSPTree* GetRight() const
+    {
+        return right;
     }
     void Divide(bool direction, int pos)
     {
@@ -40,10 +52,10 @@ public:
             return;
         auto ratio = std::min(h, w) / std::max(w, h);
         int direction = 0;
-        if (ratio > hwratio)
-        {
-            (w < h) ? direction = 1 : direction = 0;
-        }
+        if (h < 2 * minHeight)
+            direction = true;
+        else if (w < 2 * minWidth)
+            direction = false;
         else
         {
             direction = Randomizer::RandInt(0, 1);
@@ -64,6 +76,33 @@ public:
         right->DivideRecursively(level - 1, minHeight, minWidth, hwratio);
 
     }
+    template <typename T>
+    bool TraverseBFS(T visitor)
+    {
+        std::deque<BSPTree*> deq;
+        deq.push_back(this);
+        while (!deq.empty())
+        {
+            auto node = deq.front();
+            deq.pop_front();
+            if (node->GetLeft())
+                deq.push_back(node->GetLeft());
+            if (node->GetRight())
+                deq.push_back(node->GetRight());
+            if (!visitor(node))
+                return false;
+        }
+        return true;
+    }
 
 
+};
+struct BSPPrintVisitor
+{
+    bool operator()(BSPTree* tree)
+    {
+        std::cout << "level : " << tree->level << " (x,y,w,h) : " << tree->x << ','
+            << tree->y << ',' << tree->w << ',' << tree->h << ")\n";
+        return true;
+    }
 };

@@ -30,6 +30,9 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Random.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\ConsoleApplication1\ReadMe.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0D83DE07-1EFB-474A-941C-31F9B4BC17A9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
