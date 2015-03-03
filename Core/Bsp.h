@@ -6,6 +6,7 @@
 #include <iostream>
 #include <deque>
 
+
 class BSPTree
 {
     BSPTree *parent = nullptr;
@@ -51,26 +52,25 @@ public:
         if (!level || w < 2 * minWidth && h < 2 * minHeight)
             return;
         auto ratio = std::min(h, w) / std::max(w, h);
-        int direction = 0;
-        if (h < 2 * minHeight)
-            direction = true;
-        else if (w < 2 * minWidth)
-            direction = false;
+        bool horizontal = 0;
+        if (h < 2 * minWidth)
+            horizontal = false;
+        else if (w < 2 * minHeight)
+            horizontal = true;
         else
         {
-            direction = Randomizer::RandInt(0, 1);
+            horizontal = Randomizer::RandInt(0, 1);
         }
 
-
-        if (direction)
+        if (horizontal)
         {
             int pos = Randomizer::RandInt(y + minHeight, y + h - minHeight);
-            Divide(direction, pos);
+            Divide(horizontal, pos);
         }
         else
         {
             int pos = Randomizer::RandInt(x + minWidth, x + w-minWidth);
-            Divide(direction, pos);
+            Divide(horizontal, pos);
         }
         left->DivideRecursively(level - 1, minHeight, minWidth, hwratio);
         right->DivideRecursively(level - 1, minHeight, minWidth, hwratio);
@@ -91,6 +91,32 @@ public:
                 deq.push_back(node->GetRight());
             if (!visitor(node))
                 return false;
+        }
+        return true;
+    }
+    template <typename T>
+    bool TraverseInvertedBFS(T visitor)
+    {
+        std::deque<BSPTree*> deq;
+        std::deque<BSPTree*> deq2;
+        deq.push_back(this);
+        while (!deq.empty())
+        {
+            auto node = deq.front();
+            deq2.push_front(node);
+            deq.pop_front();
+            if (node->GetLeft())
+                deq.push_back(node->GetLeft());
+            if (node->GetRight())
+                deq.push_back(node->GetRight());
+
+        }
+        while (!deq2.empty())
+        {
+            auto node = deq2.front();
+            if (!visitor(node))
+                return false;
+            deq2.pop_front();
         }
         return true;
     }

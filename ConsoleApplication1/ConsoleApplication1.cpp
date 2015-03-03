@@ -4,11 +4,11 @@
 #include "stdafx.h"
 
 #include "Bsp.h"
+#include "LevelGenerator.h"
 int _tmain(int argc, _TCHAR* argv[])
 {
-    auto fg = BSPTree(0, 0, 100, 100);
-    fg.DivideRecursively(3, 10, 10, 0.5);
-    BSPPrintVisitor vis;
-    fg.TraverseBFS(vis);
+
+    BSPLevelGenerator gen;
+    gen.GenerateLevel(200, 200);
 }
 
