@@ -20,14 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bsp.h" />
-    <ClInclude Include="Grid.h" />
-    <ClInclude Include="Level.h" />
+    <ClInclude Include="DungeonLevel.h" />
     <ClInclude Include="LevelGenerator.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Level.cpp" />
     <ClCompile Include="Random.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 #pragma once
-#include "Level.h"
+
 #include "Bsp.h"
-#include "Grid.h"
+#include "DungeonLevel.h"
 
 
 
@@ -10,25 +10,31 @@ class ILevelGenerator
 public:
     virtual ~ILevelGenerator() {}
 
-    virtual DungeonLevel GenerateLevel(int sizeX, int sizeY) = 0;
+    virtual DungeonLevel* GenerateLevel(int sizeX, int sizeY) = 0;
 };
 
 class BSPLevelGenerator : public ILevelGenerator
 {
  
+    DungeonLevel * level;
 public:
-    DungeonLevel GenerateLevel(int sizeX, int sizeY) override
+    DungeonLevel* GenerateLevel(int sizeX, int sizeY) override
     {
-        grid;
+        level = new DungeonLevel(sizeX, sizeY);
+
         BSPTree tree{ 0,0,sizeX, sizeY };
-        tree.DivideRecursively(4, 10, 10, 10);
+        tree.DivideRecursively(20, 20, 20, 10);
         tree.TraverseInvertedBFS(*this);
-        return DungeonLevel();
+        return level;
 
 
     }
     bool operator()(BSPTree* tree)
     {
+        if (tree->IsLeaf())
+        {
+            level->MakeRoom(tree->x + 1, tree->y + 1, tree->w - 2, tree->h - 2);
+        }
         return true;
     }
 };

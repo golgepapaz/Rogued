@@ -121,6 +121,12 @@ public:
         return true;
     }
 
+    bool IsLeaf()
+    {
+        return left == nullptr && right == nullptr;
+    }
+
+
 
 };
 struct BSPPrintVisitor
