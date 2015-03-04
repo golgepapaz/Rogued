@@ -9,7 +9,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 
     BSPLevelGenerator gen;
-    DungeonLevel* level = gen.GenerateLevel(1000, 1000);
+    DungeonLevel* level = gen.GenerateLevel(100, 100);
     level->Print();
 }
 

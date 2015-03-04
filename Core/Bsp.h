@@ -15,6 +15,8 @@ class BSPTree
 public:
     int x = 0, y = 0, w = 0, h = 0;
     int level = 0;
+    bool horizontal = false;
+    Room* room = nullptr;
 public:
     BSPTree(int x, int y, int w, int h) : x(x), y(y), w(w), h(h)
     {
@@ -52,7 +54,7 @@ public:
         if (!level || w < 2 * minWidth && h < 2 * minHeight)
             return;
         auto ratio = std::min(h, w) / std::max(w, h);
-        bool horizontal = 0;
+   
         if (h < 2 * minWidth)
             horizontal = false;
         else if (w < 2 * minHeight)
