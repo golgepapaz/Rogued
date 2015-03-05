@@ -53,9 +53,9 @@ public:
     void Print()
     {
         std::ofstream outFile("out.txt");
-        for (auto& t : grid)
+        for (const auto& t : grid)
         {
-            for (Tile& z : t)
+            for (Tile z : t)
             {
                 if (z.IsWall())
                     outFile << " ";

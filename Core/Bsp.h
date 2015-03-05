@@ -61,7 +61,7 @@ public:
             horizontal = true;
         else
         {
-            horizontal = Randomizer::RandInt(0, 1);
+            horizontal = static_cast<bool>(Randomizer::RandInt(0, 1));
         }
 
         if (horizontal)
