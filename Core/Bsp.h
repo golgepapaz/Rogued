@@ -16,7 +16,7 @@ public:
     int x = 0, y = 0, w = 0, h = 0;
     int level = 0;
     bool horizontal = false;
-    Room* room = nullptr;
+
 public:
     BSPTree(int x, int y, int w, int h) : x(x), y(y), w(w), h(h)
     {
