@@ -33,7 +33,7 @@ public:
 
     DungeonLevel(int x, int y) : grid(boost::extents[x][y])
     {}
-    auto operator[](std::size_t index) -> decltype(grid[index])
+    auto operator[](std::size_t index) -> decltype(grid.operator[](index))
     {
         return grid[index];
     }
@@ -46,6 +46,8 @@ public:
                 grid[i][j] = Tile{ TileTerrainType::ROCK };
             }
         }
+
+        Tile zz = this[x][y];
         auto room = new Room(x, y, w, h);
         rooms.push_back(room);
         return room;

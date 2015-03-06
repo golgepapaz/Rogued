@@ -15,7 +15,7 @@ class BSPTree
 public:
     int x = 0, y = 0, w = 0, h = 0;
     int level = 0;
-    bool horizontal = false;
+    int horizontal = 0;
 
 public:
     BSPTree(int x, int y, int w, int h) : x(x), y(y), w(w), h(h)
@@ -30,7 +30,7 @@ public:
     {
         return right;
     }
-    void Divide(bool direction, int pos)
+    void Divide(int direction, int pos)
     {
         if (direction) //horizontal
         {
@@ -56,12 +56,12 @@ public:
         auto ratio = std::min(h, w) / std::max(w, h);
    
         if (h < 2 * minWidth)
-            horizontal = false;
+            horizontal = 0;
         else if (w < 2 * minHeight)
-            horizontal = true;
+            horizontal = 1;
         else
         {
-            horizontal = static_cast<bool>(Randomizer::RandInt(0, 1));
+            horizontal = Randomizer::RandInt(0, 1);
         }
 
         if (horizontal)

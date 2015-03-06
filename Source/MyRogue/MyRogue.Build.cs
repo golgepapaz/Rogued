@@ -21,6 +21,8 @@ public class MyRogue : ModuleRules
         PublicIncludePaths.Add(CorePath);
         PublicIncludePaths.Add("D:/MSVCLibs64/include");
 
+        PublicAdditionalLibraries.Add(Path.Combine(CorePath, "x64/Release/Core.lib"));
+
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
 		
