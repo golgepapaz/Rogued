@@ -11,6 +11,6 @@ T* SpawnBlueprint(UWorld* world, UClass* bp , const FVector& loc , const FRotato
     info.Owner = owner;
     info.Instigator = instigator;
     info.bDeferConstruction = false;
-    return world->SpawnActor<T>(world, bp, loc, rot, info);
+    return world->SpawnActor<T>(bp, loc, rot, info);
 }
 }

@@ -19,8 +19,13 @@ public:
         int32 X;
         UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Parameters)
         int32 Y;
+        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Tiles)
+        UClass* WallTile;
+        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Tiles)
+        UClass* GroundTile;
 
         ADungeonVisualizer(const FObjectInitializer& init);
+        void PostInitializeComponents() override;
 	
 };
 

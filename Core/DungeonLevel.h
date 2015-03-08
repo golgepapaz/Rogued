@@ -47,7 +47,6 @@ public:
             }
         }
 
-        Tile zz = this[x][y];
         auto room = new Room(x, y, w, h);
         rooms.push_back(room);
         return room;
