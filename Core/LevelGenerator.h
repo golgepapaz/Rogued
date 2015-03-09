@@ -19,17 +19,17 @@ class BSPLevelGenerator : public ILevelGenerator
     DungeonLevel * level;
     unsigned minX = 20;
     unsigned minY = 20;
-    unsigned minRoomX = 6;
-    unsigned minRoomY = 6;
+    unsigned minRoomX = 10;
+    unsigned minRoomY = 10;
 
 public:
     DungeonLevel* GenerateLevel(int sizeX, int sizeY) override
     {
         level = new DungeonLevel(sizeX, sizeY);
 
-        BSPTree tree{ 0, 0, sizeX, sizeY };
+        BSPTree tree{ 0, 0, sizeX, sizeY};
         auto depth = sizeX * sizeY / (minX * minY);
-        tree.DivideRecursively(20, minX, minY, 10);
+        tree.DivideRecursively(1, minX, minY, 10);
         tree.TraverseInvertedBFS(*this);
         return level;
 
@@ -63,10 +63,21 @@ public:
                 //no intersection
                 if (left->x + left->w - 1 < right->x || right->x + right->w - 1 < left->x)
                 {
+                    int x1 = Randomizer::RandInt(left->x, left->x + left->w - 1);
+                    int x2 = Randomizer::RandInt(right->x, right->x + right->w - 1);
+                    int y = Randomizer::RandInt(left->y + left->h, right->y);
+                    level->DigVertically(left->y, y - 1, x1);
+                    level->DigHorizontally(x1, x2, y);
+                    level->DigVertically(right->y, y + 1, x2);
 
                 }
                 else
                 {
+                    int minX = std::min(left->x, right->x);
+                    int maxX = std::max(left->x + left->w - 1, right->x + right->w - 1);
+                    int x = Randomizer::RandInt(minX, maxX);
+                    level->DigVertically(left->y, right->y, x);
+
 
                 }
 

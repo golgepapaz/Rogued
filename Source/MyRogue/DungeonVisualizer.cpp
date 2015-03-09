@@ -16,8 +16,7 @@ ADungeonVisualizer::ADungeonVisualizer(const FObjectInitializer& init) : Super(i
 void ADungeonVisualizer::PostInitializeComponents()
 {
     Super::PostInitializeComponents();
-    X = 20;
-    Y = 20;
+
 
     auto offset = 400;
     BSPLevelGenerator buh;
@@ -32,9 +31,9 @@ void ADungeonVisualizer::PostInitializeComponents()
             
      //       Tile t = tt[y];
             if (t.IsWall())
-                Util::SpawnBlueprint<AStaticMeshActor>(GetWorld(), WallTile, loc, rot);
+                Util::SpawnBlueprint<AStaticMeshActor>(GetWorld(), WallTile, loc, rot, true , this);
             else
-                Util::SpawnBlueprint<AStaticMeshActor>(GetWorld(), GroundTile, loc, rot);
+                Util::SpawnBlueprint<AStaticMeshActor>(GetWorld(), GroundTile, loc, rot ,true ,this);
 
         }
 
