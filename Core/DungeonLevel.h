@@ -49,7 +49,7 @@ public:
             ++y;
             --h;
         }
-        if ( x + w >= grid.shape()[0])
+        if (x + w >= grid.shape()[0])
         {
             w = grid.shape()[0] - x;
         }
@@ -73,40 +73,41 @@ public:
     }
     void DigHorizontally(int x1, int x2, int y)
     {
-        auto dx = x1>x2 ? -1 : 1;
-        if (x1 == x2)
+        auto max = std::max(x1, x2);
+        auto min = std::min(x1, x2);
+        if (min == max)
             return;
         do
         {
-            grid[x1][y] = { TileTerrainType::ROCK };
-            x1 += dx;
-        } while (x1 != x2);
+            grid[min][y] = { TileTerrainType::ROCK };
+            ++min;
+        } while (min < max +1);
     }
     void DigVertically(int y1, int y2, int x)
     {
-        auto dy = y1 > y2 ? -1 : 1;
+        auto max = std::max(y1, y2);
+        auto min = std::min(y1, y2);
         if (y1 == y2)
             return;
         do
         {
-            grid[x][y1] = { TileTerrainType::ROCK };
-            y1 += dy;
-        } while (y1 != y2);
-    }   
+            grid[x][min] = { TileTerrainType::ROCK };
+            ++min;
+        } while (min<max+1);
+    }
     void Print()
     {
         std::ofstream outFile("out.txt");
-        for (const auto& t : grid)
+        for (auto x = 0; x < grid.shape()[0]; ++x)
         {
-            for (Tile z : t)
+            for (auto y = 0; y < grid.shape()[1]; ++y)
             {
-                if (z.IsWall())
+                if (grid[y][x].IsWall())
                     outFile << " ";
                 else
                     outFile << "#";
             }
-            outFile << '\n';
-
+            outFile << "\n";
         }
     }
 };
