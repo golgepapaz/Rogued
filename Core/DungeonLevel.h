@@ -3,16 +3,8 @@
 #include <boost/multi_array.hpp>
 #include <fstream>
 #include "Tile.h"
+#include "Geometry.h"
 
-struct Coord
-{
-    int x;
-    int y;
-    Coord(int x = 0, int y = 0) : x(x), y(y)
-    {}
-
-
-};
 class Room
 {
 public:
