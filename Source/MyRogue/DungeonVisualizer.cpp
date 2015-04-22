@@ -18,7 +18,7 @@ void ADungeonVisualizer::PostInitializeComponents()
     Super::PostInitializeComponents();
 
 
-    auto offset = 400;
+    auto offset = 80;
     BSPLevelGenerator buh;
     DungeonLevel* lev = buh.GenerateLevel(X, Y);
 
