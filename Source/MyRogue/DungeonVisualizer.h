@@ -23,6 +23,8 @@ public:
         UClass* WallTile;
         UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Tiles)
         UClass* GroundTile;
+        UFUNCTION(BlueprintCallable, Category = Function)
+        void Generate();
 
         ADungeonVisualizer(const FObjectInitializer& init);
         void PostInitializeComponents() override;

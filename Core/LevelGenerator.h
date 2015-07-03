@@ -21,18 +21,28 @@ class BSPLevelGenerator : public ILevelGenerator
     unsigned minY = 20;
     unsigned minRoomX = 10;
     unsigned minRoomY = 10;
+    unsigned depth = 0;
 
 public:
+    BSPLevelGenerator(unsigned depth = 0):
+        depth(depth)
+    {
+
+    }
     DungeonLevel* GenerateLevel(int sizeX, int sizeY) override
     {
+        return GenerateLevel(sizeX, sizeY, depth);
+    }
+    DungeonLevel* GenerateLevel(int sizeX, int sizeY, unsigned depth)
+    {
+
         level = new DungeonLevel(sizeX, sizeY);
 
         BSPTree tree{ 0, 0, sizeX, sizeY };
-        auto depth = sizeX * sizeY / (minX * minY);
-        tree.DivideRecursively(1, minX, minY, 10);
+        depth = sizeX * sizeY / (minX * minY);
+        tree.DivideRecursively(depth, minX, minY, 10);
         tree.TraverseInvertedBFS(*this);
         return level;
-
 
     }
     bool operator()(BSPTree* tree)

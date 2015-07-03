@@ -18,9 +18,14 @@ void ADungeonVisualizer::PostInitializeComponents()
     Super::PostInitializeComponents();
 
 
+   
+
+}
+void ADungeonVisualizer::Generate()
+{
     auto offset = 80;
     BSPLevelGenerator buh;
-    DungeonLevel* lev = buh.GenerateLevel(X, Y);
+    DungeonLevel* lev = buh.GenerateLevel(X, Y, 2);
 
     for (auto x = 0; x < X; ++x)
         for (auto y = 0; y < Y; ++y)
@@ -28,15 +33,14 @@ void ADungeonVisualizer::PostInitializeComponents()
             FVector loc(x * offset, y * offset, 0);
             FRotator rot(0, 0, 0);
             Tile t = (*lev)[x][y];
-            
-     //       Tile t = tt[y];
+
+            //       Tile t = tt[y];
             if (t.IsWall())
-                Util::SpawnBlueprint<AStaticMeshActor>(GetWorld(), WallTile, loc, rot, true , this);
+                Util::SpawnBlueprint<AStaticMeshActor>(GetWorld(), WallTile, loc, rot, true, this);
             else
-                Util::SpawnBlueprint<AStaticMeshActor>(GetWorld(), GroundTile, loc, rot ,true ,this);
+                Util::SpawnBlueprint<AStaticMeshActor>(GetWorld(), GroundTile, loc, rot, true, this);
 
         }
-
 }
 
 
