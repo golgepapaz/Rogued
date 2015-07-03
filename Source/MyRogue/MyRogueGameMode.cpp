@@ -9,12 +9,6 @@ AMyRogueGameMode::AMyRogueGameMode(const FObjectInitializer& PCIP)
 	: Super(PCIP)
 {
     
-    HUDClass = ADungeonVisualizer::StaticClass();
-    ConstructorHelpers::FClassFinder<ADungeonVisualizer> hudClass(TEXT("Blueprint'/Game/Blueprints/BP_DungeonVisualizer.BP_DungeonVisualizer_C'"));
-    if (hudClass.Succeeded())
-    {
-        HUDClass = hudClass.Class;
-    }
 }
 
 
